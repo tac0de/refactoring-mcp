@@ -1,14 +1,17 @@
 {
   "name": "@tac0de/refactoring-mcp",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Refactoring MCP server that exposes prompt generation via @modelcontextprotocol/sdk tools.",
-  "main": "src/index.js",
+  "type": "module",
+  "main": "dist/index.js",
   "bin": {
-    "refactoring-mcp": "src/server.js"
+    "refactoring-mcp": "bin/refactoring-mcp.js"
   },
   "scripts": {
-    "start": "node ./src/server.js",
-    "test": "node --test ./test/*.test.js"
+    "start": "npm run build && node ./dist/server.js",
+    "build": "tsc",
+    "test": "npm run build && node --test ./dist/test/*.test.js",
+    "prepare": "npm run build"
   },
   "keywords": [
     "mcp",
@@ -19,10 +22,13 @@
     "ai-agent"
   ],
   "license": "ISC",
-  "type": "commonjs",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.0.0",
     "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "typescript": "^5.5.4"
   },
   "engines": {
     "node": ">=18"
@@ -35,8 +41,12 @@
     "access": "public"
   },
   "files": [
+    "bin",
+    "dist",
     "src",
+    "tsconfig.json",
     "docs/spec-prompts.md",
+    "docs/mcp-server.md",
     "prompts",
     "examples",
     "test",

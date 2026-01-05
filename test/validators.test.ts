@@ -1,6 +1,6 @@
-const { test } = require('node:test');
-const assert = require('node:assert').strict;
-const { validatePromptPayload } = require('../src/validators');
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
+import { validatePromptPayload } from '../src/validators.js';
 
 test('validatePromptPayload rejects unsupported type', () => {
   const result = validatePromptPayload({ type: 'unknown', options: {} });

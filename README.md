@@ -95,4 +95,4 @@ This project turns the Refactoring MCP prompt and governance specification templ
 
 ### Testing & Validation
 
-- `npm test` runs `node --test ./test/*.test.js`, covering the prompt builders, store, and validators.
+- `npm test` runs `tsc` (build) and then `node --test ./dist/test/*.test.js`, covering the prompt builders, store, and validators.

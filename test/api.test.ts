@@ -1,9 +1,9 @@
-const { test } = require('node:test');
-const { strict: assert } = require('node:assert');
-const {
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
+import {
   generateProtocolSpec,
   generateGovernanceSpec,
-} = require('../src/api');
+} from '../src/api/index.js';
 
 test('protocol spec includes each requested section', () => {
   const spec = generateProtocolSpec({
@@ -11,7 +11,10 @@ test('protocol spec includes each requested section', () => {
     context: 'Legacy modules share a monolithic config.',
     inputs: ['src/', 'package.json'],
     analysis: ['Identify hotspots', 'List dependencies that rely on shared state'],
-    transform: ['Introduce service layer', 'Migrate utilities into isolated modules'],
+    transform: [
+      'Introduce service layer',
+      'Migrate utilities into isolated modules',
+    ],
     verification: ['Run npm test', 'Validate linting'],
   });
 
@@ -25,8 +28,14 @@ test('protocol spec includes each requested section', () => {
 test('governance spec structures communication rules', () => {
   const spec = generateGovernanceSpec({
     projectName: 'Refactoring MCP',
-    stakeholders: ['Platform team maintains runtime code.', 'Docs team owns guides.'],
-    decisionRules: ['Minor updates auto-approve after peer review.', 'Breaking changes require cross-team sync.'],
+    stakeholders: [
+      'Platform team maintains runtime code.',
+      'Docs team owns guides.',
+    ],
+    decisionRules: [
+      'Minor updates auto-approve after peer review.',
+      'Breaking changes require cross-team sync.',
+    ],
     communication: ['Slack channel #refactor-mcp', 'Weekly sync note in Notion'],
     compliance: ['Run DepShield', 'Security team approves before merge'],
   });

@@ -1,13 +1,15 @@
-const { test } = require('node:test');
-const assert = require('node:assert').strict;
-const { PromptStore } = require('../src/index');
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
+import { PromptStore } from '../src/index.js';
 
 test('PromptStore adds and retrieves prompt entries', () => {
   const store = new PromptStore();
   const payload = {
-    type: 'protocol',
+    type: 'protocol' as const,
     projectName: 'Refactoring MCP',
     prompt: 'sample prompt',
+    timestamp: new Date().toISOString(),
+    details: { lanes: ['context'] },
   };
 
   const saved = store.add(payload);
