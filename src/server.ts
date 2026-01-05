@@ -2,7 +2,9 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { z } from 'zod';
-import pkg from '../package.json' assert { type: 'json' };
+import { createRequire } from 'node:module';
+const require = createRequire(import.meta.url);
+const pkg = require('../../package.json');
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import { PromptStore } from './store.js';
@@ -17,7 +19,7 @@ import type {
 } from './tools/promptBuilder.js';
 import { validatePromptPayload } from './validators.js';
 
-const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const DOCUMENT_KEYS = [
   'spec_prompts',
   'prd',
