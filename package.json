@@ -1,6 +1,6 @@
 {
   "name": "@tac0de/refactoring-mcp",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Refactoring MCP server that exposes prompt generation via @modelcontextprotocol/sdk tools.",
   "type": "module",
   "main": "dist/index.js",
